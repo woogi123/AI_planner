@@ -1,0 +1,74 @@
+# .github/workflows/main.yml
+# 이 워크플로우는 Docker 이미지를 빌드하고 컨테이너 레지스트리에 푸시하는 예시입니다.
+
+name: Docker Image CI
+
+# 워크플로우가 실행될 조건을 정의합니다.
+on:
+  push:
+    branches:
+      - "main" # main 브랜치에 푸시될 때 실행
+      - "jongwon" # jongwon 브랜치에 푸시될 때 실행
+  pull_request:
+    branches: [ "main" ] # main 브랜치로 풀 리퀘스트가 열릴 때 실행
+
+# 환경 변수를 정의합니다.
+env:
+  REGISTRY: docker.io # 사용할 컨테이너 레지스트리 (Docker Hub)
+  # Docker Hub에 생성한 레포지토리 이름과 정확히 일치하도록 명시합니다.
+  DOCKER_IMAGE: udd43/skproject-team4-front # 이미지 이름 (사용자 이름/레포지토리 이름)
+  DOCKER_TAG: client0.3 # 명시적으로 지정할 태그
+
+# 워크플로우를 구성하는 작업(jobs)들을 정의합니다.
+jobs:
+  build-and-push:
+    # 워크플로우가 실행될 가상 환경을 지정합니다.
+    runs-on: ubuntu-latest
+
+    # 작업의 단계를 정의합니다.
+    steps:
+      # 1. 레포지토리 체크아웃
+      # GitHub 레포지토리 코드를 워크플로우 실행 환경으로 가져옵니다.
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Docker 로그인
+      # 컨테이너 레지스트리에 로그인하여 이미지를 푸시할 권한을 얻습니다.
+      # secrets.DOCKER_USERNAME과 secrets.DOCKER_PASSWORD는 GitHub Secrets에 저장해야 합니다.
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          registry: ${{ env.REGISTRY }}
+
+      # 3. Docker Buildx 설정 (캐싱을 위해 docker-container 드라이버 사용)
+      # 기본 'docker' 드라이버는 캐시 내보내기를 지원하지 않으므로,
+      # 'docker-container' 드라이버를 사용하는 새로운 빌더 인스턴스를 생성합니다.
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        with:
+          driver: docker-container # 캐싱을 위해 docker-container 드라이버 명시
+
+      # 4. Docker 이미지 메타데이터 설정
+      # Docker 이미지에 대한 태그, 레이블 등의 메타데이터를 생성합니다.
+      # 이제 DOCKER_TAG만 사용하여 태그를 명시적으로 설정합니다.
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.DOCKER_IMAGE }}
+          tags: |
+            ${{ env.DOCKER_TAG }} # 명시적으로 지정한 태그만 사용
+
+      # 5. Docker 이미지 빌드 및 푸시
+      # Dockerfile을 사용하여 이미지를 빌드하고, 설정된 레지스트리에 푸시합니다.
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: . # Dockerfile이 위치한 경로 (현재 레포지토리 루트)
+          push: true # 이미지를 레지스트리에 푸시할지 여부
+          tags: ${{ steps.meta.outputs.tags }} # 위에서 생성된 태그 사용
+          labels: ${{ steps.meta.outputs.labels }} # 위에서 생성된 레이블 사용
+          cache-from: type=gha # GitHub Actions 캐시를 사용하여 빌드 속도 향상
+          cache-to: type=gha,mode=max # 빌드 결과 캐시

@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "http://spring.plannerai.kro.kr/api/$1"
+    },
+    {
+      "source": "/plans/(.*)",
+      "destination": "http://spring.plannerai.kro.kr/plans/$1"
+    },
+    {
+      "source": "/chat/(.*)",
+      "destination": "http://fastapi.plannerai.kro.kr/chat/$1"
+    }
+  ]
+}

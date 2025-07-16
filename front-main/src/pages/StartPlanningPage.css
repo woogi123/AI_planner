@@ -1,0 +1,451 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%; /* html, body의 높이를 100%로 설정하여 vh 단위가 제대로 작동하도록 합니다. */
+  overflow-x: hidden;
+}
+
+/* 전체 배경 */
+.planning-wrapper {
+  background-image: url('../assets/beach.png'); /* 이미지 경로에 맞게 수정 */
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative; /* 자식 요소의 absolute 포지셔닝 기준 */
+}
+
+/* 새로운 고정 상단바 컨테이너 */
+.fixed-app-header {
+  top: 0; /* ★ 상단에 고정 */
+  left: 0; /* ★ 왼쪽에 고정 */
+  width: 100%; /* ★ 전체 너비 */
+  height: 100px; /* ★ 고정 높이 설정 */
+  background-color: transparent; /* 배경색을 투명하게 변경 */
+  box-shadow: none; /* 그림자 제거 */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 로고를 중앙에 두기 위해 */
+  z-index: 1000; /* 다른 요소들 위에 표시 */
+  padding: 0 20px; /* 좌우 패딩 */
+}
+
+/* 캘린더 아이콘 래퍼 스타일 */
+.calendar-icon-wrapper {
+  height: 80px;
+  position: absolute; /* fixed-app-header 기준 절대 위치 */
+  top: 14px;
+  left: 20px; /* 왼쪽에서 20px 떨어지도록 */
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
+}
+
+.calendar-icon-wrapper:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.calendar-icon {
+  height: 40px; /* 캘린더 아이콘 크기 유지 */
+}
+
+/* 로그인 버튼 */
+.login-button {
+  position: absolute; /* fixed-app-header 기준 절대 위치 */
+  right: 45px; /* 오른쪽에서 30px 떨어지도록 유지 */
+  top: 18px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #f0f0f0;
+}
+
+
+/* 입력 폼 영역 */
+.form-container {
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 30px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 400px;
+  margin-bottom: 10px;
+  margin-right: 10px; /* 사용자 제공 코드에 따라 조정 - 이 속성은 form-container가 가운데 정렬되어 있다면 의미가 없을 수 있습니다. */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-container label {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.input-btn,
+.input-select,
+.input-field {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #aaa;
+  border-radius: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-btn {
+  background-color: #f0f0f0;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.input-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.date-picker-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.react-datepicker-wrapper {
+  flex-grow: 1;
+}
+
+.react-datepicker__input-container input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #aaa;
+  border-radius: 10px;
+  font-size: 16px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* 키워드 입력 */
+.keyword-input input { /* .keyword-input .input-field에서 변경, 더 간결하게 */
+  background-color: #f8f8f8;
+  cursor: default;
+}
+
+.keyword-title {
+  margin-top: 10px;
+  font-weight: bold;
+  background-color: #fff;
+  border: 2px solid #00bcd4;
+  padding: 5px 10px;
+  text-align: center;
+  border-radius: 20px;
+  color: #00bcd4;
+}
+
+/* 키워드 버튼 */
+.keyword-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.keyword-btn {
+  background-color: #fff;
+  border: 1px solid #aaa;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.keyword-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.keyword-btn.selected {
+  background-color: #00bcd4;
+  color: white;
+  border: none;
+}
+
+/* 셔플 버튼 (다른 키워드 보기) */
+.shuffle-button {
+  margin-top: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.shuffle-button:hover {
+  background-color: #f0f0f0;
+}
+
+
+/* 검색 버튼 */
+.search-button {
+  margin-top: 20px;
+  background-color: #00bcd4;
+  color: white;
+  font-size: 18px;
+  padding: 12px 0;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* transition 추가 */
+}
+
+.search-button:hover {
+  background-color: #0097a7; /* hover 효과 추가 */
+  transform: translateY(-2px); /* hover 효과 추가 */
+}
+
+.search-button:active {
+  transform: translateY(0); /* active 효과 추가 */
+}
+
+/* 지도 모달 오버레이 */
+.map-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.map-modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 800px;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.map-modal-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: #333;
+  z-index: 2001;
+}
+
+.leaflet-map-container {
+  width: 100%;
+  flex-grow: 1;
+  min-height: 300px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.map-instruction {
+  text-align: center;
+  font-size: 0.9em;
+  color: #666;
+  margin-top: 10px;
+}
+
+/* FullCalendar 모달 스타일 */
+.full-calendar-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000; /* 지도 모달과 동일한 z-index */
+}
+
+.full-calendar-modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 900px; /* 너비를 450px에서 900px로 늘립니다. */
+  height: 750px; /* 높이를 500px에서 600px로 늘립니다. */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.full-calendar-modal-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: #333;
+  z-index: 2001;
+}
+
+.full-calendar-modal-title {
+  text-align: center;
+  font-size: 1.8em;
+  color: #3fa4cc;
+  margin-bottom: 20px;
+}
+
+/* FullCalendar 제목 위치 조정 */
+.full-calendar-wrapper .fc .fc-toolbar-title {
+  position: relative; /* 상대 위치 설정 */
+  left: 30px; /* ★ 제목을 오른쪽으로 30px 이동합니다. */
+}
+
+.full-calendar-display-wrapper {
+  width: 100%;
+  flex-grow: 1; /* 사용 가능한 공간을 모두 차지하도록 */
+  min-height: 400px; /* 최소 높이를 300px에서 400px로 늘립니다. */
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.full-calendar-instruction {
+  text-align: center;
+  font-size: 0.9em;
+  color: #666;
+  margin-top: 10px;
+}
+
+.full-calendar-modal-content .fc-dayGridMonth-button {
+  width: 140px; /* 원하는 너비로 조절 */
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .fixed-app-header {
+    height: 60px; /* 모바일에서 헤더 높이 조정 */
+    padding: 0 15px; /* 모바일에서 패딩 조정 */
+  }
+
+  .planning-wrapper {
+    padding-top: 60px; /* 모바일에서 고정 헤더 높이만큼 패딩 조정 */
+  }
+
+  .calendar-icon-wrapper {
+    left: 15px; /* 모바일에서 왼쪽 위치 조정 */
+  }
+
+  .calendar-icon {
+    height: 35px; /* 모바일 캘린더 아이콘 높이 유지 */
+  }
+
+  .login-button {
+    right: 15px; /* 모바일에서 오른쪽 위치 조정 */
+    padding: 5px 10px;
+    font-size: 14px;
+    /* bottom: 42px; 이 부분은 모바일에서 제거하거나 조정해야 할 수 있습니다. */
+  }
+
+  .form-container {
+    padding: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    gap: 10px;
+  }
+
+  .form-container label {
+    font-size: 14px;
+  }
+
+  .input-btn,
+  .input-select,
+  .input-field {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .keyword-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .search-button {
+    padding: 10px 0;
+    font-size: 16px;
+  }
+
+  .map-modal-content {
+    width: 95%;
+    height: 90vh;
+    padding: 15px;
+  }
+
+  .map-modal-close-btn {
+    font-size: 1.2em;
+    top: 5px;
+    right: 5px;
+  }
+
+  .full-calendar-modal-content {
+    width: 95%; /* 모바일에서는 너비를 95%로 유지하여 반응형으로 만듭니다. */
+    height: 80vh; /* 모바일에서는 높이를 80vh로 유지하여 반응형으로 만듭니다. */
+    max-width: 400px; /* 모바일에서도 최대 너비를 제한하여 너무 커지지 않도록 합니다. */
+    max-height: 500px; /* 모바일에서도 최대 높이를 제한합니다. */
+    padding: 15px;
+  }
+
+  .full-calendar-modal-title {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+  }
+
+  .full-calendar-display-wrapper {
+    min-height: 250px; /* 모바일에서 최소 높이 조정 */
+  }
+
+  /* 모바일용 shuffle-button 스타일이 중복되어 있어서 정리했습니다. */
+  .shuffle-button { /* @media 내부에서 재정의된 것으로 보이는 부분 */
+    margin-top: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .shuffle-button:hover {
+    background-color: #f0f0f0;
+  }
+}

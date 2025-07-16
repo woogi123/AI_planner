@@ -1,0 +1,264 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-image: url('/src/assets/background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; 
+  line-height: 1.6;
+  position: relative;
+}
+
+.auth-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(66, 133, 244, 0.1);
+  z-index: 1;
+}
+
+.auth-form-container {
+  background: white;
+  border-radius: 16px;
+  padding: 60px;
+  margin-left: 200px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 450px;
+  position: relative;
+  z-index: 2;
+}
+
+.logo-section {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.logo {
+  font-size: 16px;
+  font-weight: 500;
+  color: #4285f4;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.logo img {
+  width: 130px; 
+  height: auto; 
+  display: block; 
+  margin: 0 auto; 
+}
+
+.welcome-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.form {
+  margin-bottom: 24px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background: #f9fafb;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #4285f4;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.1);
+}
+
+.input-group input::placeholder {
+  color: #9ca3af;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 16px;
+  background: #4285f4;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 16px;
+}
+
+.submit-btn:hover {
+  background: #3367d6;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(66, 133, 244, 0.4);
+}
+
+.toggle-section {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.toggle-section p {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.toggle-btn {
+  background: none;
+  border: none;
+  color: #4285f4;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 4px;
+  transition: color 0.3s ease;
+}
+
+.toggle-btn:hover {
+  color: #3367d6;
+  text-decoration: underline;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+  .auth-form-container {
+    margin: 20px;
+    padding: 40px 30px;
+    max-width: none;
+  }
+  
+  .welcome-title {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-form-container {
+    margin: 10px;
+    padding: 30px 20px;
+  }
+  
+  .welcome-title {
+    font-size: 24px;
+  }
+  
+  .subtitle {
+    font-size: 13px;
+  }
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  text-align: left; 
+  padding-left: 0.5rem; 
+}
+
+
+.input-group input.error {
+  border-color: #e74c3c;
+}
+
+/* 애니메이션 효과 */
+.auth-form-container {
+  animation: fadeInLeft 0.8s ease-out;
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.input-group {
+  animation: slideIn 0.5s ease-out;
+  animation-fill-mode: both;
+}
+
+.catchphrase-section {
+  position: absolute;
+  top: 15%; 
+  right: 25%; 
+  text-align: center; 
+  max-width: 40%; 
+  z-index: 10;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.catchphrase-title {
+  font-size: 2.5em; 
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.catchphrase-subtitle {
+  font-size: 1.0em;
+  line-height: 1.7;
+}
+
+.main-page-link-section {
+  margin-top: 1.5rem; 
+  border-top: 1px solid #e0e0e0; /* 연한 회색 선 */
+  padding-top: 1.5rem; 
+  text-align: center; 
+}
+
+.input-group:nth-child(1) { animation-delay: 0.1s; }
+.input-group:nth-child(2) { animation-delay: 0.2s; }
+.input-group:nth-child(3) { animation-delay: 0.3s; }
+.input-group:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,167 @@
+/* MyPage.css */
+
+/* main-page-container와 유사한 배경 및 배치 스타일 */
+.mypage-container {
+  /* 배경 이미지를 CSS에서 설정 */
+  background-image: url('../assets/beach.png'); 
+  background-size: cover;
+  background-position: center;
+  height: 100vh; /* 전체 뷰포트 높이 */
+  color: #333;
+  position: relative;
+  display: flex; /* 자식 요소들을 중앙에 배치하기 위해 flex 사용 */
+  justify-content: center; /* 가로 중앙 정렬 */
+  align-items: center; /* 세로 중앙 정렬 */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* 메인 페이지에서 가져온 버튼 컨테이너 스타일 */
+.top-right-buttons-container {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+/* 메인 페이지에서 가져온 버튼 스타일 */
+.top-bar-button {
+  background-color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  white-space: nowrap;
+}
+
+.top-bar-button:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-1px);
+}
+
+.top-bar-button:active {
+  transform: translateY(0);
+  background-color: #e0e0e0;
+}
+
+
+/* 기존 마이페이지 컨텐츠 래퍼 스타일 (크게 변경 없음) */
+.mypage-content-wrapper {
+  background-color: rgba(255, 255, 255, 0.9); /* 배경 투명도 약간 추가 */
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.mypage-title {
+  font-size: 2.2em;
+  color: #333;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+.profile-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 0; /* 불필요한 마진 제거 */
+}
+
+.form-group {
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-size: 1em;
+  color: #555;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1.0em;
+  box-sizing: border-box;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="password"]:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.update-button {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin-top: 20px; /* 버튼과 폼 사이 간격 조정 */
+}
+
+.update-button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.update-button:active {
+  transform: translateY(0);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .top-right-buttons-container {
+    top: 15px;
+    right: 15px;
+    gap: 5px;
+  }
+
+  .top-bar-button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .mypage-content-wrapper {
+    padding: 25px;
+    margin: 15px;
+  }
+
+  .mypage-title {
+    font-size: 1.8em;
+  }
+
+  .form-group label {
+    font-size: 0.9em;
+  }
+
+  .form-group input {
+    padding: 10px 12px;
+    font-size: 0.95em;
+  }
+
+  .update-button {
+    padding: 10px 20px;
+    font-size: 1em;
+  }
+}

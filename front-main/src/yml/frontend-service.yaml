@@ -1,0 +1,13 @@
+# frontend-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+spec:
+  selector:
+    app: frontend # frontend-deployment에서 정의한 라벨과 일치
+  ports:
+    - protocol: TCP
+      port: 80 # 서비스가 노출할 포트 (외부 접근용)
+      targetPort: 80 # 파드(컨테이너)의 포트 (Nginx의 80번)
+  type: LoadBalancer # GCP Load Balancer를 자동으로 생성하여 외부 IP 제공

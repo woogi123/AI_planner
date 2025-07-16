@@ -1,0 +1,483 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root, .main-page-container {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  background-color: transparent;
+}
+
+.main-page-container {
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  color: #333;
+  position: relative;
+}
+
+.login-prompt-text {
+  margin-bottom: 30px;
+  font-size: 2.5em;
+  color: #ff0707;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+
+/* 상단 버튼 */
+.top-right-buttons-container {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.top-bar-button {
+  background-color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  white-space: nowrap;
+}
+
+.top-bar-button:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-1px);
+}
+
+.top-bar-button:active {
+  transform: translateY(0);
+  background-color: #e0e0e0;
+}
+
+/* 메인 콘텐츠 */
+.main-content {
+  padding: 10px;
+  text-align: center;
+}
+
+.main-content .main-title {
+  margin-bottom: 30px;
+  font-size: 2.5em;
+  color: #004d40;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.main-catchphrase-text {
+  color: #333;
+  line-height: 1.4;
+  margin: 0 auto;
+  max-width: 700px;
+  text-align: center;
+}
+
+.main-catchphrase-text.title-text {
+  font-size: 1.9em;
+  font-weight: bold;
+  margin-top: -15px;
+  margin-bottom: 30px;
+  color: #2c3e50;
+}
+
+.main-catchphrase-text.subtitle-text {
+  font-size: 1.2em;
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.plan-button {
+  background-color: white;
+  padding: 17px  30px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.plan-button:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-2px);
+}
+
+.plan-button:active {
+  transform: translateY(0);
+  background-color: #e0e0e0;
+}
+
+/* 캘린더 */
+.full-calendar-wrapper {
+  max-width: 800px;
+  margin: 0 auto 40px auto;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.full-calendar-wrapper .fc .fc-toolbar-title {
+  color: #004d40;
+  font-weight: bold;
+  font-size: 1.8em;
+  transform: translateX(-50px);
+}
+
+.full-calendar-wrapper .fc-daygrid-day {
+  background-color: #f8f8f8;
+}
+
+.full-calendar-wrapper .fc-day-today {
+  background-color: #e0f7fa !important;
+}
+
+.full-calendar-wrapper .fc-day-sat {
+  color: #007bff;
+}
+
+.full-calendar-wrapper .fc-day-sun {
+  color: #dc3545;
+}
+
+.full-calendar-wrapper .fc-event {
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+  color: white;
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-size: 0.85em;
+}
+
+
+
+/* 로고 */
+.logo-container {
+  text-align: center;
+  margin-top: 40px;  
+  margin-bottom: 40px;
+  padding: 0 20px;
+}
+
+.main-page-logo {
+  max-width: 150px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.2));
+}
+
+.full-calendar-wrapper .fc-dayGridMonth-button {
+  width: 120px; /* 원하는 너비로 조절 */
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+  .top-right-buttons-container {
+    top: 15px;
+    left: 15px;
+    gap: 5px;
+  }
+
+  .top-bar-button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .main-content .main-title {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+
+  .main-catchphrase-text.title-text {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+  }
+
+  .main-catchphrase-text.subtitle-text {
+    font-size: 1em;
+    margin-bottom: 30px;
+  }
+
+  .plan-button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .full-calendar-wrapper {
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .full-calendar-wrapper .fc-daygrid-event,
+  .full-calendar-wrapper .fc-toolbar-title,
+  .full-calendar-wrapper .fc-button {
+      font-size: 0.9em;
+  }
+
+  .logo-container {
+    margin-top: 40px;
+    margin-bottom: 15px;
+  }
+
+  .main-page-logo {
+    max-width: 200px;
+  }
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* 반투명 검정 오버레이 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* 다른 요소 위에 표시 */
+}
+
+.popup-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 700px; /* 팝업 너비 조정 */
+    width: 90%;
+    max-height: 90vh; /* 최대 높이 설정 */
+    overflow-y: auto; /* 내용이 넘칠 경우 스크롤바 */
+    position: relative;
+    color: #333;
+    text-align: left; /* 텍스트 왼쪽 정렬 */
+}
+
+.popup-close-btn-top { /* 상단 우측 닫기 버튼 */
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #555;
+    padding: 5px;
+}
+
+.popup-close-btn-top:hover {
+    color: #000;
+}
+
+.popup-content h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 1.8em; /* 날짜 제목 크기 */
+    margin-bottom: 25px;
+    text-align: center;
+    border-bottom: 1px solid #eee; /* 날짜 아래 구분선 */
+    padding-bottom: 15px;
+}
+
+.plan-details-display {
+    padding: 10px;
+}
+
+.plan-option {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.plan-features {
+    list-style: none; /* 기본 리스트 스타일 제거 */
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.plan-features li {
+    margin-bottom: 5px;
+    font-size: 0.95em;
+    color: #666;
+}
+
+.plan-section-title {
+    font-size: 1.3em;
+    color: #007bff; /* 섹션 제목 색상 */
+    margin-top: 25px;
+    margin-bottom: 15px;
+    border-bottom: 1px dashed #ddd; /* 섹션 제목 아래 점선 */
+    padding-bottom: 5px;
+}
+
+.plan-route-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    border-left: 3px solid #007bff; /* 왼쪽 강조 선 */
+}
+
+.plan-route-item p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+.route-details {
+    font-size: 0.9em;
+    color: #555;
+    margin-top: 5px;
+}
+
+.plan-estimated-time {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f0f8ff;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+}
+
+.plan-action-buttons {
+    display: flex;
+    flex-wrap: wrap; /* 버튼이 많을 경우 줄바꿈 */
+    justify-content: center;
+    gap: 10px; /* 버튼 사이 간격 */
+    margin-top: 30px;
+}
+
+.action-button {
+    background-color: #6c757d; /* 회색 기본 버튼 */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.action-button:hover {
+    background-color: #5a6268;
+}
+
+/* 특정 버튼 색상 (선택 사항) */
+.action-button:nth-child(1) { /* 채팅 내역 보기 */
+    background-color: #28a745;
+}
+.action-button:nth-child(1):hover {
+    background-color: #218838;
+}
+.action-button:nth-child(4) { /* 일정 삭제하기 */
+    background-color: #dc3545;
+}
+.action-button:nth-child(4):hover {
+    background-color: #c82333;
+}
+
+.calendar-popup-overlay {
+  position: fixed; /* 화면 전체를 덮도록 고정 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* 어두운 반투명 배경 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* 다른 요소 위에 표시 */
+}
+
+/* 팝업 내용 컨테이너 스타일 */
+.calendar-popup-content {
+  background-color: #f0f0f0; /* 배경색 변경 */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  width: 450px; /* 팝업 너비 설정 */
+  padding: 30px; /* 패딩 조정 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative; /* 닫기 버튼 위치 기준 */
+  font-family: 'Inter', sans-serif; /* 폰트 설정 */
+  border: 1px solid #ccc; /* 테두리 추가 */
+}
+
+/* 닫기 버튼 스타일 */
+.popup-close-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.8em; /* 'X' 크기 */
+  cursor: pointer;
+  color: #555;
+  padding: 0;
+  line-height: 1; /* 텍스트 정렬을 위해 */
+  transition: color 0.2s ease;
+}
+
+.popup-close-button:hover {
+  color: #000;
+}
+
+/* 날짜 범위 표시 스타일 */
+.popup-date-range {
+  background-color: #e0e0e0; /* 배경색 */
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-bottom: 25px; /* 하단 여백 */
+  color: #333;
+  letter-spacing: 0.5px; /* 글자 간격 */
+}
+
+/* 팝업 메시지 스타일 */
+.popup-message {
+  text-align: center;
+  margin-bottom: 30px; /* 하단 여백 */
+  color: #444;
+  font-size: 1.05em;
+  line-height: 1.5;
+}
+
+/* 확인 버튼 컨테이너 */
+.popup-buttons {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* 확인 버튼 스타일 */
+.popup-buttons button {
+  background-color: #4a90e2; /* 파란색 계열 */
+  color: white;
+  border: none;
+  padding: 12px 40px; /* 버튼 크기 */
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  width: 100%; /* 너비 100% */
+  max-width: 200px; /* 최대 너비 */
+}
+
+.popup-buttons button:hover {
+  background-color: #357bd8;
+  transform: translateY(-1px); /* 살짝 위로 뜨는 효과 */
+}
+
+
+}

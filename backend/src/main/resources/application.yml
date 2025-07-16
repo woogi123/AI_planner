@@ -1,0 +1,23 @@
+server:
+  port: 8099
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/db_planner?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: user_woogi
+    password: 1234
+
+  jwt:
+    secret: "A7dk@Z!pP9rXqLm3#sWvTjE2bNcY$uKd"
+
+  redis:
+    host: 219.255.15.170
+    port: 6379
+    timeout: 60000
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: update

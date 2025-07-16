@@ -1,0 +1,28 @@
+# frontend-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  labels:
+    app: frontend
+spec:
+  replicas: 2 # 프론트엔드 파드 2개로 시작 (원하는 개수 설정)
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend-container
+        image: gcr.io/burnished-core-465605-e6/skproject-team4-front:client0.3 # 5단계에서 푸시한 GCR 이미지 경로
+        ports:
+        - containerPort: 80 # 컨테이너 내부 웹 서버 포트 (Nginx의 80번)
+        # 환경 변수 설정 (Vite 빌드 시점에 API URL이 삽입되지 않았다면)
+        # env:
+        #   - name: VITE_SPRING_API_URL
+        #     value: http://spring-backend-service:8080/spring # 백엔드 서비스 이름으로 접근
+        #   - name: VITE_PYTHON_API_URL
+        #     value: http://python-backend-service:8000/fastapi

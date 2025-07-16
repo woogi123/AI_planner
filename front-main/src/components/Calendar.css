@@ -1,0 +1,557 @@
+/* Calendar.css - 연속 이벤트 표시 개선 */
+
+.full-calendar-wrapper {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+/* FullCalendar 전체 컨테이너 */
+.fc {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+
+/* 이벤트 기본 스타일 */
+.fc-event {
+  border: none !important;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 1px 4px;
+}
+
+/* 커스텀 이벤트 스타일 */
+.custom-event {
+  background-color: #28a745 !important;
+  /* 녹색 */
+  color: white !important;
+  border: none !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* 다중 일자 이벤트 스타일 개선 */
+.fc-daygrid-event {
+  margin-top: 1px !important;
+  margin-bottom: 1px !important;
+  border-radius: 4px !important;
+  min-height: 18px;
+  display: flex;
+  align-items: center;
+}
+
+.fc-daygrid-event-harness {
+  margin-top: 1px !important;
+  margin-bottom: 1px !important;
+}
+
+/* 이벤트 제목 스타일 */
+.fc-event-title {
+  padding: 2px 4px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 이벤트가 여러 주에 걸쳐 표시될 때의 스타일 */
+/* 시작 부분 */
+.fc-event-start {
+  border-top-left-radius: 4px !important;
+  border-bottom-left-radius: 4px !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+/* 끝 부분 */
+.fc-event-end {
+  border-top-right-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+/* 이벤트 중간 부분 (시작도 끝도 아닌 부분) */
+.fc-event:not(.fc-event-start):not(.fc-event-end) {
+  border-radius: 0 !important;
+}
+
+/* 이벤트 호버 효과 */
+.fc-event:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+/* 캘린더 헤더 스타일 */
+.fc-toolbar {
+  margin-bottom: 1rem;
+  padding: 0 10px;
+}
+
+.fc-toolbar-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.fc .fc-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.fc-button:hover {
+  background-color: #407ab7 !important;
+  /* 진한 파란색 */
+  border-color: #0579f5 !important;
+}
+
+.fc-button:disabled {
+  background-color: #6c757d !important;
+  /* 회색 */
+  border-color: #6c757d !important;
+  opacity: 0.6;
+}
+
+/* 날짜 셀 스타일 */
+.fc-daygrid-day {
+  border: 1px solid #e9ecef;
+  background-color: white;
+}
+
+.fc-daygrid-day:hover {
+  background-color: #f8f9fa;
+}
+
+.fc-daygrid-day-number {
+  padding: 8px;
+  font-weight: 500;
+  color: #495057;
+}
+
+/* 오늘 날짜 강조 */
+.fc-day-today {
+  background-color: #fff3cd !important;
+  /* 연한 노란색 */
+}
+
+.fc-day-today .fc-daygrid-day-number {
+  color: #fe1616 !important;
+  /* 진한 노란색 */
+  font-weight: 700;
+}
+
+/* 일요일 날짜 글씨 빨간색으로 변경 */
+.fc-day-sun .fc-daygrid-day-number {
+  color: #dc3545; !important;
+}
+
+/* 토요일 날짜 글씨 파란색으로 변경 */
+.fc-day-sat .fc-daygrid-day-number {
+  color: #007bff; !important;
+}
+
+/* 모달 오버레이 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* 모달 내용 컨테이너 */
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  position: relative;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  animation: fadeInScale 0.3s ease-out;
+}
+
+/* 모달 닫기 버튼 */
+.modal-close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.2s ease;
+}
+
+.modal-close-button:hover {
+  color: #333;
+}
+
+/* 모달 제목 */
+.modal-content h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #333;
+  text-align: center;
+  font-size: 1.8em;
+  font-weight: 700;
+}
+
+/* 모달 날짜 표시 */
+.modal-date-display {
+  text-align: center;
+  font-size: 1.1em;
+  color: #666;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* AIChatpage 채팅 내용 영역 */
+.modal-chat-content-area {
+  background-color: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 20px;
+  min-height: 150px;
+  max-height: calc(80vh - 200px);
+  /* 모달 높이에 따라 유동적으로 조절 */
+  overflow-y: auto;
+  /* 내용이 길어지면 스크롤 */
+  margin-bottom: 20px;
+  line-height: 1.6;
+  color: #555;
+  white-space: pre-wrap;
+  /* 줄바꿈 및 공백 유지 */
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.modal-chat-content-area h3 {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  color: #444;
+  font-size: 1.2em;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+}
+
+.modal-chat-content-area ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.modal-chat-content-area li {
+  margin-bottom: 8px;
+  padding-left: 15px;
+  position: relative;
+}
+
+.modal-chat-content-area li::before {
+  content: "•";
+  color: #007bff;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/* 드롭다운 컨테이너 */
+.action-dropdown-container {
+  position: relative;
+  text-align: right;
+  margin-top: auto;
+  /* 모달 하단에 붙도록 */
+}
+
+/* 드롭다운 버튼 */
+.action-dropdown-button {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 600;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+}
+
+.action-dropdown-button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.action-dropdown-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 123, 255, 0.3);
+}
+
+/* 드롭다운 메뉴 */
+.action-dropdown-menu {
+  position: absolute;
+  bottom: 100%;
+  /* 버튼 위로 올라오게 */
+  right: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  list-style: none;
+  padding: 10px 0;
+  margin: 10px 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  z-index: 1010;
+  /* 모달보다 위에 오도록 */
+  min-width: 180px;
+  animation: slideUpFadeIn 0.2s ease-out;
+  /* 기본적으로 숨김 */
+  display: none;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+  /* 클릭 이벤트 비활성화 */
+}
+
+/* 드롭다운 메뉴 활성화 시 */
+.action-dropdown-menu.show-dropdown {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  /* 클릭 이벤트 활성화 */
+}
+
+.action-dropdown-menu li {
+  padding: 12px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 0.95em;
+  color: #333;
+  transition: background-color 0.2s ease;
+}
+
+.action-dropdown-menu li:hover {
+  background-color: #f0f0f0;
+}
+
+.bullet-point {
+  width: 8px;
+  /* 6px에서 8px로 변경 */
+  height: 8px;
+  /* 6px에서 8px로 변경 */
+  background-color: #007bff;
+  border-radius: 50%;
+  margin-right: 12px;
+  /* 8px에서 12px로 변경 */
+  flex-shrink: 0;
+  /* 추가: 내용 축소 방지 */
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .full-calendar-wrapper {
+    padding: 10px;
+  }
+
+  .fc-toolbar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .fc-toolbar-title {
+    font-size: 1.2rem;
+  }
+
+  .modal-content {
+    padding: 16px;
+    width: 95%;
+  }
+
+  .fc-event-title {
+    font-size: 10px;
+  }
+}
+
+.fc-event.custom-event::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -1px;
+  /* 이벤트의 왼쪽 경계에 붙도록 */
+  width: 2px;
+  background-color: #1e7e34;
+  /* 더 진한 녹색 */
+}
+
+.fc-event.custom-event::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -1px;
+  /* 이벤트의 오른쪽 경계에 붙도록 */
+  width: 2px;
+  background-color: #1e7e34;
+  /* 더 진한 녹색 */
+}
+
+/* 드롭다운 컨테이너 */
+.action-dropdown-container {
+  position: relative;
+  display: inline-block;
+  /* 버튼과 메뉴를 한 줄에 배치하고 컨테이너 크기를 내용에 맞춤 */
+  text-align: right;
+  /* margin-top: 50px; // HTML 예제에만 필요한 스타일이므로 제거 */
+}
+
+/* 드롭다운 버튼 */
+.action-dropdown-button {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 600;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+}
+
+.action-dropdown-button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.action-dropdown-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 123, 255, 0.3);
+}
+
+/* 드롭다운 메뉴 */
+.action-dropdown-menu {
+  position: absolute;
+  bottom: 100%;
+  /* 버튼 위로 올라오게 */
+  right: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  list-style: none;
+  /* ul의 기본 리스트 스타일 제거 */
+  padding: 8px 0;
+  margin: 10px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1010;
+  min-width: 180px;
+
+  /* 기본적으로 숨김 */
+  display: none;
+  /* 초기에는 숨김 */
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  /* 애니메이션 추가 */
+  pointer-events: none;
+  /* 클릭 이벤트 비활성화 */
+}
+
+/* CSS 전용: 드롭다운 컨테이너에 마우스 오버 시 메뉴 표시 (클릭 동작 아님) */
+.action-dropdown-container:hover .action-dropdown-menu {
+  display: block;
+  /* 마우스 오버 시 보이게 */
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  /* 클릭 이벤트 활성화 */
+}
+
+/* 드롭다운 메뉴 리스트 아이템 스타일 */
+.action-dropdown-menu li {
+  padding: 6px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 0.95em;
+  color: #333;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+
+.action-dropdown-menu li:hover {
+  background-color: #f0f0f0;
+}
+
+.bullet-point {
+  width: 8px;
+  height: 8px;
+  background-color: #007bff;
+  border-radius: 50%;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+/* "일정 삭제하기" 항목의 특정 스타일 */
+.action-dropdown-menu li:last-child {
+  color: red;
+  font-weight: bold;
+}
+
+/* 애니메이션 키프레임 */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideUpFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
